@@ -1,0 +1,109 @@
+{
+  "annotators": [
+    {
+      "id": 1,
+      "name": "Audrey Guardiola",
+      "vacations": [{}]
+    },
+    {
+      "id": 2,
+      "name": "Anna-Lynn Aguero",
+      "vacations": []
+    },
+    {
+      "id": 3,
+      "name": "Audrey Agtarap",
+      "vacations": []
+    },
+    {
+      "id": 4,
+      "name": "Christopher Boxer",
+      "vacations": []
+    },
+    {
+      "id": 5,
+      "name": "Elizaveta Kovalenko",
+      "vacations": []
+    },
+    {
+      "id": 6,
+      "name": "Iana Picicur",
+      "vacations": []
+    },
+    {
+      "id": 7,
+      "name": "Keiko Suda",
+      "vacations": []
+    },
+    {
+      "id": 8,
+      "name": "Maureen Cant",
+      "vacations": []
+    },
+    {
+      "id": 9,
+      "name": "Audrey Agtarap",
+      "vacations": []
+    },
+    {
+      "id": 10,
+      "name": "Melody Manuputty",
+      "vacations": []
+    },
+    {
+      "id": 11,
+      "name": "Monica Meza-Girard",
+      "vacations": []
+    },
+    {
+      "id": 12,
+      "name": "Nahla Ismail",
+      "vacations": []
+    },
+    {
+      "id": 13,
+      "name": "Oliver Wang",
+      "vacations": []
+    },
+    {
+      "id": 14,
+      "name": "Rosanne Evers",
+      "vacations": []
+    },
+    {
+      "id": 15,
+      "name": "Sebastian Schneider",
+      "vacations": []
+    },
+    {
+      "id": 16,
+      "name": "Shinnel Ferary",
+      "vacations": []
+    },
+    {
+      "id": 17,
+      "name": "Suranjana Baruah",
+      "vacations": []
+    },
+    {
+      "id": 18,
+      "name": "Tamy Sakr",
+      "vacations": []
+    },
+    {
+      "id": 19,
+      "name": "Thomas Pappas",
+      "vacations": []
+    },
+    {
+      "id": 20,
+      "name": "Tania Lye",
+      "vacations": []
+    },
+    {
+      "id": 21,
+      "name": "Whitney Alger",
+      "vacations": []
+    }
+  ]
+}
