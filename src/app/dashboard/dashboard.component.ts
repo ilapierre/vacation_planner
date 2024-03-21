@@ -39,7 +39,7 @@ export interface Annotators {
 })
 export class DashboardComponent implements OnInit {
   calendarOptions: any;
-  calendarEvents: any;
+  calendarEvents: any[] = [];
 
   annotators: any[] = [];
 
@@ -55,10 +55,13 @@ export class DashboardComponent implements OnInit {
       this.annotators = data.annotators;
     });
 
-    this.addVacation(1, '2024-04-05', '2024-04-20');
-    this.addVacation(1, '2024-04-06', '2024-04-21', 'Vacances de noel');
-    this.addVacation(1, '2024-04-07', '2024-04-22', 'Day off');
-    console.log(this.annotators);
+    this.addVacation(1, '2024-03-06', '2024-03-10', 'Vacances de noel');
+    this.addVacation(2, '2024-03-09', '2024-03-15', 'Vacances de noel');
+    this.addVacation(3, '2024-03-18', '2024-03-24', 'Vacances de noel');
+
+    this.loadVacations();
+
+    console.log(this.calendarEvents);
   }
 
   getAnnotators(): Observable<any> {
@@ -75,5 +78,20 @@ export class DashboardComponent implements OnInit {
     if (annotator) {
       annotator.vacations.push({ description, start, end });
     }
+  }
+
+  loadVacations() {
+    this.annotators.forEach((annotator) => {
+      if (annotator.vacations.length) {
+        annotator.vacations.forEach((vac: Vacation) => {
+          console.log(vac);
+          this.calendarEvents.push({
+            title: annotator.name,
+            start: vac.start,
+            end: vac.end,
+          });
+        });
+      }
+    });
   }
 }
