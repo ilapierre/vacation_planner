@@ -15,6 +15,7 @@ import { AddVacationComponent } from './../add-vacation/add-vacation.component';
 export interface Vacation {
   start: string;
   end: string;
+  description : string;
 }
 
 export interface Annotators {
@@ -57,7 +58,7 @@ export class DashboardComponent implements OnInit {
 
     this.addVacation(1, '2024-03-06', '2024-03-10', 'Vacances de noel');
     this.addVacation(2, '2024-03-09', '2024-03-15', 'Vacances de noel');
-    this.addVacation(3, '2024-03-18', '2024-03-24', 'Vacances de noel');
+    this.addVacation(3, '2024-03-18', '2024-03-24');
 
     this.loadVacations();
 
@@ -89,9 +90,12 @@ export class DashboardComponent implements OnInit {
             title: annotator.name,
             start: vac.start,
             end: vac.end,
+            description : vac.description !== undefined ? vac.description : "No description"
           });
         });
       }
     });
+
+    this.calendarEvents.shift();
   }
 }

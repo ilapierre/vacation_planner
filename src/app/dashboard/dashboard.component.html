@@ -5,4 +5,12 @@
   ></full-calendar>
 </div>
 
+@for (item of calendarEvents; track item.title) {
+  <ul>
+    <li>{{ "Annotator: " + item.title }}</li>
+    <li>{{ "Title: " + item.description }}</li>
+    <li>{{ "Start - End: " + item.start + ' to ' + item.end }}</li>
+  </ul>
+}
+
 <app-add-vacation></app-add-vacation>
