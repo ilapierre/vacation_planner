@@ -15,7 +15,7 @@ import { AddVacationComponent } from './../add-vacation/add-vacation.component';
 export interface Vacation {
   start: string;
   end: string;
-  description : string;
+  description: string;
 }
 
 export interface Annotators {
@@ -85,12 +85,14 @@ export class DashboardComponent implements OnInit {
     this.annotators.forEach((annotator) => {
       if (annotator.vacations.length) {
         annotator.vacations.forEach((vac: Vacation) => {
-          console.log(vac);
           this.calendarEvents.push({
             title: annotator.name,
             start: vac.start,
             end: vac.end,
-            description : vac.description !== undefined ? vac.description : "No description"
+            description:
+              vac.description !== undefined
+                ? vac.description
+                : 'No description',
           });
         });
       }
