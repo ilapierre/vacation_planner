@@ -8,14 +8,10 @@
 </button>
 
 <!-- annotators -->
-@for (item of annotators; track item.name) {
-<li>{{ item.name }}</li>
-} @empty {
-<li>There are no items.</li>
-
-<!-- vacations -->
-} @for (item of vacations; track item.start) {
-<li>{{ item.start }}</li>
-} @empty {
-<li>There are no items.</li>
+@for (item of annotatorsVacations; track item.name) {
+<li>Name: {{ item.name }}</li>
+<li>Start Date: {{ item.start }}</li>
+<li>End Date: {{ item.end }}</li>
+<li>Description: {{ item.description }}</li>
+<br />
 }

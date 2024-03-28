@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Vacation } from './../assets/models';
 import { AddVacationComponent } from './add-vacation/add-vacation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
-import { Annotator } from '../assets/models';
+import { Annotator, AnnotatorVacation, Vacation } from '../assets/models';
 import { DbService } from '../db.service';
 
 @Component({
@@ -26,6 +25,7 @@ export class AppComponent implements OnInit {
 
   annotators: Annotator[] = [];
   vacations: Vacation[] = [];
+  annotatorsVacations: AnnotatorVacation[] = [];
 
   constructor(private dbService: DbService) {}
 
@@ -55,9 +55,11 @@ export class AppComponent implements OnInit {
     if (this.get === true) {
       this.annotators = this.dbService.getAnnotators();
       this.vacations = this.dbService.getVacations();
+      this.annotatorsVacations = this.dbService.getAnnotatorsVacations();
 
       console.log(this.annotators);
       console.log(this.vacations);
+      console.log(this.annotatorsVacations);
     } else if (this.get === false) {
       this.createAnnotator(testAnnotator);
     }

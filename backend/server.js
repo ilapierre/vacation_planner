@@ -63,3 +63,18 @@ app.get("/api/vacations", (req, res) => {
     }
   });
 });
+
+// Route to get all annotators and their vacations
+app.get("/api/annotatorsVacations", (req, res) => {
+  db.all(
+    "SELECT a.id, a.name, v.start, v.end, v.description FROM annotators as a LEFT JOIN vacations AS v ON a.id = v.annotator_id",
+    (err, rows) => {
+      if (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+      } else {
+        res.json(rows);
+      }
+    }
+  );
+});

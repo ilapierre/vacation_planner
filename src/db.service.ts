@@ -10,6 +10,7 @@ export class DbService {
 
   annotators: any;
   vacations: any;
+  annotatorsVacations: any;
 
   createAnnotator(annotator: Annotator) {
     const name = annotator.name;
@@ -42,5 +43,20 @@ export class DbService {
       }
     );
     return this.vacations;
+  }
+
+  getAnnotatorsVacations() {
+    let response;
+    this.http
+      .get<any[]>('http://localhost:3000/api/annotatorsVacations')
+      .subscribe(
+        (response) => {
+          this.annotatorsVacations = response;
+        },
+        (error) => {
+          console.error('Error fetching annotators:', error);
+        }
+      );
+    return this.annotatorsVacations;
   }
 }
