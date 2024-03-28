@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Vacation } from './../assets/models';
 import { AddVacationComponent } from './add-vacation/add-vacation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
+import { Annotator } from '../assets/models';
 import { DbService } from '../db.service';
-
-export interface Annotator {
-  id: number;
-  name: string;
-}
 
 @Component({
   selector: 'app-root',
@@ -28,6 +25,7 @@ export class AppComponent implements OnInit {
   get: boolean = true;
 
   annotators: Annotator[] = [];
+  vacations: Vacation[] = [];
 
   constructor(private dbService: DbService) {}
 
@@ -56,8 +54,10 @@ export class AppComponent implements OnInit {
 
     if (this.get === true) {
       this.annotators = this.dbService.getAnnotators();
+      this.vacations = this.dbService.getVacations();
 
       console.log(this.annotators);
+      console.log(this.vacations);
     } else if (this.get === false) {
       this.createAnnotator(testAnnotator);
     }

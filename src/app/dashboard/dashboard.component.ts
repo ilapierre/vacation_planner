@@ -10,13 +10,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { Observable } from 'rxjs';
+import { Vacation } from '../../assets/models';
 import { AddVacationComponent } from './../add-vacation/add-vacation.component';
-
-export interface Vacation {
-  start: string;
-  end: string;
-  description: string;
-}
 
 export interface Annotators {
   name: string;

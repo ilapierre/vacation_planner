@@ -7,8 +7,15 @@
   Hello
 </button>
 
+<!-- annotators -->
 @for (item of annotators; track item.name) {
 <li>{{ item.name }}</li>
+} @empty {
+<li>There are no items.</li>
+
+<!-- vacations -->
+} @for (item of vacations; track item.start) {
+<li>{{ item.start }}</li>
 } @empty {
 <li>There are no items.</li>
 }

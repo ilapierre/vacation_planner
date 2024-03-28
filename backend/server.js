@@ -51,3 +51,15 @@ app.get("/api/annotators", (req, res) => {
     }
   });
 });
+
+// Route to get all annotators
+app.get("/api/vacations", (req, res) => {
+  db.all("SELECT * FROM vacations", (err, rows) => {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    } else {
+      res.json(rows);
+    }
+  });
+});
