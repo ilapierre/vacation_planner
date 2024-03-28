@@ -1,39 +1,35 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-import { User } from './app/app.component';
+import { Annotator } from './app/app.component';
 
 @Injectable({
   providedIn: 'any',
 })
 export class DbService {
-  apiUrl = 'http://localhost:3000/api/users';
+  apiUrl = 'http://localhost:3000/api/annotators';
 
   constructor(private http: HttpClient) {}
 
-  users: any;
+  annotators: any;
 
-  createUser(user: User) {
-    const name = user.name;
-    const email = user.email;
+  createAnnotator(annotator: Annotator) {
+    const name = annotator.name;
 
-    return this.http.post(this.apiUrl, { name, email });
+    return this.http.post(this.apiUrl, { name });
   }
 
-  getUsers() {
+  getAnnotators() {
     let response;
     this.http
       .get<any[]>(this.apiUrl) // Change the URL accordingly
       .subscribe(
         (response) => {
-          this.users = response;
-          console.log('Users:', this.users);
+          this.annotators = response;
         },
         (error) => {
-          console.error('Error fetching users:', error);
+          console.error('Error fetching annotators:', error);
         }
       );
-
-    return response;
+    return this.annotators;
   }
 }

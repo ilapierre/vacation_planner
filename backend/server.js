@@ -27,32 +27,27 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-app.post("/api/users", (req, res) => {
+app.post("/api/annotators", (req, res) => {
   console.log(req.body);
-  const { name, email } = req.body;
-  db.run(
-    "INSERT INTO users (name, email) VALUES (?, ?)",
-    [name, email],
-    (err) => {
-      if (err) {
-        console.error(err.message);
-        res.status(500).send("Server Error");
-      } else {
-        res.status(201).send("User created successfully");
-      }
-    }
-  );
-});
-
-// Route to get all users
-app.get("/api/users", (req, res) => {
-  db.all("SELECT * FROM users", (err, rows) => {
+  const { name } = req.body;
+  db.run("INSERT INTO annotators (name) VALUES (?)", [name], (err) => {
     if (err) {
       console.error(err.message);
       res.status(500).send("Server Error");
     } else {
-      console.log("hello" + rows);
-      res.json(rows); // Send JSON response with all users
+      res.status(201).send("Annotator created successfully");
+    }
+  });
+});
+
+// Route to get all annotators
+app.get("/api/annotators", (req, res) => {
+  db.all("SELECT * FROM annotators", (err, rows) => {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    } else {
+      res.json(rows);
     }
   });
 });

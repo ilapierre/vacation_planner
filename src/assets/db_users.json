@@ -2,108 +2,87 @@
   "annotators": [
     {
       "id": 1,
-      "name": "Audrey Guardiola",
-      "vacations": [{}]
+      "name": "Audrey Guardiola"
     },
     {
       "id": 2,
-      "name": "Anna-Lynn Aguero",
-      "vacations": []
+      "name": "Anna-Lynn Aguero"
     },
     {
       "id": 3,
-      "name": "Audrey Agtarap",
-      "vacations": []
+      "name": "Audrey Agtarap"
     },
     {
       "id": 4,
-      "name": "Christopher Boxer",
-      "vacations": []
+      "name": "Christopher Boxer"
     },
     {
       "id": 5,
-      "name": "Elizaveta Kovalenko",
-      "vacations": []
+      "name": "Elizaveta Kovalenko"
     },
     {
       "id": 6,
-      "name": "Iana Picicur",
-      "vacations": []
+      "name": "Iana Picicur"
     },
     {
       "id": 7,
-      "name": "Keiko Suda",
-      "vacations": []
+      "name": "Keiko Suda"
     },
     {
       "id": 8,
-      "name": "Maureen Cant",
-      "vacations": []
+      "name": "Maureen Cant"
     },
     {
       "id": 9,
-      "name": "Audrey Agtarap",
-      "vacations": []
+      "name": "Audrey Agtarap"
     },
     {
       "id": 10,
-      "name": "Melody Manuputty",
-      "vacations": []
+      "name": "Melody Manuputty"
     },
     {
       "id": 11,
-      "name": "Monica Meza-Girard",
-      "vacations": []
+      "name": "Monica Meza-Girard"
     },
     {
       "id": 12,
-      "name": "Nahla Ismail",
-      "vacations": []
+      "name": "Nahla Ismail"
     },
     {
       "id": 13,
-      "name": "Oliver Wang",
-      "vacations": []
+      "name": "Oliver Wang"
     },
     {
       "id": 14,
-      "name": "Rosanne Evers",
-      "vacations": []
+      "name": "Rosanne Evers"
     },
     {
       "id": 15,
-      "name": "Sebastian Schneider",
-      "vacations": []
+      "name": "Sebastian Schneider"
     },
     {
       "id": 16,
-      "name": "Shinnel Ferary",
-      "vacations": []
+      "name": "Shinnel Ferary"
     },
     {
       "id": 17,
-      "name": "Suranjana Baruah",
-      "vacations": []
+      "name": "Suranjana Baruah"
     },
     {
       "id": 18,
-      "name": "Tamy Sakr",
-      "vacations": []
+      "name": "Tamy Sakr"
     },
     {
       "id": 19,
-      "name": "Thomas Pappas",
-      "vacations": []
+      "name": "Thomas Pappas"
     },
     {
       "id": 20,
-      "name": "Tania Lye",
-      "vacations": []
+      "name": "Tania Lye"
     },
     {
       "id": 21,
-      "name": "Whitney Alger",
-      "vacations": []
+      "name": "Whitney Alger"
     }
   ]
 }

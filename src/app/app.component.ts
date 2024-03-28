@@ -6,8 +6,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 
 import { DbService } from '../db.service';
 
-export interface User {
-  email: string;
+export interface Annotator {
+  id: number;
   name: string;
 }
 
@@ -27,35 +27,39 @@ export class AppComponent implements OnInit {
   title = 'vacation_planner';
   get: boolean = true;
 
+  annotators: Annotator[] = [];
+
   constructor(private dbService: DbService) {}
 
   ngOnInit(): void {
     //this.createUser('audrey', 'hello@live.com');
   }
 
-  createUser(user: User) {
-    this.dbService.createUser(user).subscribe(
+  createAnnotator(annotator: Annotator) {
+    this.dbService.createAnnotator(annotator).subscribe(
       () => {
-        console.log('User created successfully');
+        console.log('Annotator created successfully');
         // Handle success
       },
       (error) => {
-        console.error('Error creating user:', error);
+        console.error('Error creating annotator:', error);
         // Handle error
       }
     );
   }
 
-  addUser() {
-    const user: User = {
+  addAnnotator() {
+    const testAnnotator: Annotator = {
+      id: 1,
       name: 'Audrey',
-      email: 'who knows',
     };
 
     if (this.get === true) {
-      this.dbService.getUsers();
+      this.annotators = this.dbService.getAnnotators();
+
+      console.log(this.annotators);
     } else if (this.get === false) {
-      this.createUser(user);
+      this.createAnnotator(testAnnotator);
     }
   }
 }
