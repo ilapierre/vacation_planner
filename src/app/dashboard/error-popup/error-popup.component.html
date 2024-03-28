@@ -1,0 +1,16 @@
+<div class="popup">
+  <h2 mat-dialog-title>{{ data.errorTitle }}</h2>
+  <mat-dialog-content>
+    <p>{{ data.errorMessage }}</p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="true"
+      (click)="refresh()"
+    >
+      Reload
+    </button>
+  </mat-dialog-actions>
+</div>

@@ -1,23 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import {
   MatNativeDateModule,
   provideNativeDateAdapter,
 } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialog } from '@angular/material/dialog';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { Observable } from 'rxjs';
-import { Vacation } from '../../assets/models';
+import { Annotator, AnnotatorVacation, Vacation } from '../../assets/models';
+import { DbService } from '../../db.service';
 import { AddVacationComponent } from './../add-vacation/add-vacation.component';
-
-export interface Annotators {
-  name: string;
-  vacations: Vacation[];
-}
-
+import { VacationPopupComponent } from './vacation-popup/vacation-popup.component';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -29,70 +25,99 @@ export interface Annotators {
     MatNativeDateModule,
     AddVacationComponent,
     FullCalendarModule,
+    VacationPopupComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
+  @ViewChild('calendar', { static: false }) calendarRef!: ElementRef;
+
+  calendar: Calendar | null = null;
   calendarOptions: any;
   calendarEvents: any[] = [];
 
-  annotators: any[] = [];
+  annotators: Annotator[] = [];
+  vacations: Vacation[] = [];
+  annotatorsVacations: AnnotatorVacation[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private dbService: DbService, public dialog: MatDialog) {}
 
-  ngOnInit(): void {
-    this.calendarOptions = {
+  ngOnInit() {
+    this.loadVacations();
+  }
+
+  handleEventClick(clickInfo: any) {
+    // alert('Clicked event: ' + clickInfo.event.title);
+    this.vacationPopup(clickInfo.event);
+  }
+
+  ngAfterViewInit() {
+    this.calendar = new Calendar(this.calendarRef.nativeElement, {
       plugins: [dayGridPlugin],
       initialView: 'dayGridMonth',
-    };
-
-    this.getAnnotators().subscribe((data) => {
-      this.annotators = data.annotators;
+      events: this.calendarEvents,
+      eventClick: this.handleEventClick.bind(this),
     });
-
-    this.addVacation(1, '2024-03-06', '2024-03-10', 'Vacances de noel');
-    this.addVacation(2, '2024-03-09', '2024-03-15', 'Vacances de noel');
-    this.addVacation(3, '2024-03-18', '2024-03-24');
-
-    this.loadVacations();
+    this.calendar.render();
 
     console.log(this.calendarEvents);
   }
 
-  getAnnotators(): Observable<any> {
-    return this.http.get('/assets/db_users.json');
-  }
+  rndColor(): string {
+    let rnd = Math.floor(Math.random() * 5);
 
-  addVacation(
-    annotatorId: number,
-    start: string,
-    end: string,
-    description?: string
-  ) {
-    const annotator = this.annotators.find((a) => a.id === annotatorId);
-    if (annotator) {
-      annotator.vacations.push({ description, start, end });
+    switch (rnd) {
+      case 1:
+        return 'purple';
+      case 2:
+        return 'red';
+      case 3:
+        return 'blue';
+      case 4:
+        return 'green';
+      case 5:
+        return 'pink';
+      default:
+        return 'blue';
     }
   }
 
   loadVacations() {
-    this.annotators.forEach((annotator) => {
-      if (annotator.vacations.length) {
-        annotator.vacations.forEach((vac: Vacation) => {
-          this.calendarEvents.push({
-            title: annotator.name,
-            start: vac.start,
-            end: vac.end,
-            description:
-              vac.description !== undefined
-                ? vac.description
-                : 'No description',
-          });
-        });
-      }
+    this.annotatorsVacations = this.dbService.getAnnotatorsVacations();
+
+    this.annotatorsVacations.forEach((vacation) => {
+      this.calendarEvents.push({
+        id: vacation.id,
+        title: vacation.name,
+        start: vacation.start,
+        end: vacation.end,
+        description:
+          vacation.description !== undefined
+            ? vacation.description
+            : 'No description',
+        color: this.rndColor(),
+      });
+    });
+  }
+
+  vacationPopup(event: any): void {
+    console.log(event);
+    let duration = Date.parse(event.endStr) - Date.parse(event.startStr);
+    duration = duration / 86400000;
+
+    const dialogRef = this.dialog.open(VacationPopupComponent, {
+      data: {
+        title: event.title,
+        description: event.extendedProps.description,
+        start: event.startStr,
+        end: event.endStr,
+        duration: duration,
+      },
     });
 
-    this.calendarEvents.shift();
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+    });
   }
 }

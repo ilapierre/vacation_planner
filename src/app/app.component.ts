@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AddVacationComponent } from './add-vacation/add-vacation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -19,7 +19,7 @@ import { DbService } from '../db.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'vacation_planner';
   get: boolean = true;
 
@@ -29,19 +29,13 @@ export class AppComponent implements OnInit {
 
   constructor(private dbService: DbService) {}
 
-  ngOnInit(): void {
-    //this.createUser('audrey', 'hello@live.com');
-  }
-
   createAnnotator(annotator: Annotator) {
     this.dbService.createAnnotator(annotator).subscribe(
       () => {
         console.log('Annotator created successfully');
-        // Handle success
       },
       (error) => {
         console.error('Error creating annotator:', error);
-        // Handle error
       }
     );
   }

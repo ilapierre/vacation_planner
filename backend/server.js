@@ -40,6 +40,19 @@ app.post("/api/annotators", (req, res) => {
   });
 });
 
+app.post("/api/vacations", (req, res) => {
+  console.log(req.body);
+  const { name } = req.body;
+  db.run("INSERT INTO vacations (name) VALUES (?)", [name], (err) => {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    } else {
+      res.status(201).send("Annotator created successfully");
+    }
+  });
+});
+
 // Route to get all annotators
 app.get("/api/annotators", (req, res) => {
   db.all("SELECT * FROM annotators", (err, rows) => {

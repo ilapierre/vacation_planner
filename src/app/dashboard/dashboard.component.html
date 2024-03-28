@@ -1,9 +1,4 @@
-<!-- <div class="calendar">
-  <full-calendar
-    [options]="calendarOptions"
-    [events]="calendarEvents"
-  ></full-calendar>
-</div> -->
+<div #calendar></div>
 
 @for (item of calendarEvents; track item.title) {
 <ul>
@@ -12,5 +7,11 @@
   <li>{{ "Start - End: " + item.start + " to " + item.end }}</li>
 </ul>
 }
+
+<button style="width: 400px; height: 400px" (click)="loadVacations()">
+  Hello
+</button>
+
+<button style="width: 400px; height: 400px">Bye</button>
 
 <app-add-vacation></app-add-vacation>
